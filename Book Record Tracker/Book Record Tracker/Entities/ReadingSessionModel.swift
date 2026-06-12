@@ -2,7 +2,7 @@ import Foundation
 
 final class ReadingSessionModel: DatabaseModel {
     static let tableName = "reading_sessions"
-    static let primaryKey = "id"
+    static let primaryKey = ReadingSessionColumn.readingId
 
     var id: Int?
     var bookId: Int
@@ -26,29 +26,38 @@ final class ReadingSessionModel: DatabaseModel {
         self.sessionDate = sessionDate
         self.durationMinutes = durationMinutes
     }
+    
+    enum ReadingSessionColumn {
+        static let readingId = "reading_id"
+        static let bookId = "book_id"
+        static let userId = "user_id"
+        static let pagesRead = "pages_read"
+        static let sessionDate = "session_date"
+        static let durationMinutes = "duration_minutes"
+    }
 
     static func columnDefinitions() -> [(String, DatabaseColumnType)] {
         [
-            ("id", .integer),
-            ("book_id", .integer),
-            ("user_id", .integer),
-            ("pages_read", .integer),
-            ("session_date", .text),
-            ("duration_minutes", .integer)
+            (ReadingSessionColumn.readingId, .integer),
+            (ReadingSessionColumn.bookId, .integer),
+            (ReadingSessionColumn.userId, .integer),
+            (ReadingSessionColumn.pagesRead, .integer),
+            (ReadingSessionColumn.sessionDate, .text),
+            (ReadingSessionColumn.durationMinutes, .integer)
         ]
     }
 
     func toDictionary() -> [String: Any] {
         var dict: [String: Any] = [
-            "book_id": bookId,
-            "user_id": userId,
-            "pages_read": pagesRead,
-            "session_date": sessionDate,
-            "duration_minutes": durationMinutes
+            ReadingSessionColumn.bookId: bookId,
+            ReadingSessionColumn.userId: userId,
+            ReadingSessionColumn.pagesRead: pagesRead,
+            ReadingSessionColumn.sessionDate: sessionDate,
+            ReadingSessionColumn.durationMinutes: durationMinutes
         ]
 
         if let id {
-            dict["id"] = id
+            dict[ReadingSessionColumn.readingId] = id
         }
 
         return dict
@@ -56,11 +65,11 @@ final class ReadingSessionModel: DatabaseModel {
 
     static func fromDictionary(_ dict: [String: Any]) -> ReadingSessionModel? {
         guard
-            let id = dict["id"] as? Int,
-            let bookId = dict["book_id"] as? Int,
-            let userId = dict["user_id"] as? Int,
-            let pagesRead = dict["pages_read"] as? Int,
-            let sessionDate = dict["session_date"] as? String
+            let id = dict[ReadingSessionColumn.readingId] as? Int,
+            let bookId = dict[ReadingSessionColumn.bookId] as? Int,
+            let userId = dict[ReadingSessionColumn.userId] as? Int,
+            let pagesRead = dict[ReadingSessionColumn.pagesRead] as? Int,
+            let sessionDate = dict[ReadingSessionColumn.sessionDate] as? String
         else {
             return nil
         }
@@ -71,7 +80,7 @@ final class ReadingSessionModel: DatabaseModel {
             userId: userId,
             pagesRead: pagesRead,
             sessionDate: sessionDate,
-            durationMinutes: dict["duration_minutes"] as? Int ?? 0
+            durationMinutes: dict[ReadingSessionColumn.durationMinutes] as? Int ?? 0
         )
     }
 }

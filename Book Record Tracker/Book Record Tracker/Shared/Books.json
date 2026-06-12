@@ -1,0 +1,322 @@
+[
+  {
+    "id": 1,
+    "isbn": "9780735211292",
+    "bookName": "Atomic Habits",
+    "author": "James Clear",
+    "bookDescription": "A proven framework for improving every day by getting 1 percent better every day.",
+    "genre": ["Self Help"],
+    "totalPages": 320,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg"
+
+  },
+  {
+    "id": 2,
+    "isbn": "9781455586691",
+    "bookName": "Deep Work",
+    "author": "Cal Newport",
+    "bookDescription": "Rules for focused success in a distracted world.",
+    "genre": ["Self Help"],
+    "totalPages": 296,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg"
+  
+  },
+  {
+    "id": 3,
+    "isbn": "9780374533557",
+    "bookName": "Thinking Fast and Slow",
+    "author": "Daniel Kahneman",
+    "bookDescription": "How two systems drive the way we think and make choices.",
+    "genre": ["Psychology"],
+    "totalPages": 499,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780374533557-L.jpg"
+
+  },
+  {
+    "id": 4,
+    "isbn": "9781612680194",
+    "bookName": "Rich Dad Poor Dad",
+    "author": "Robert Kiyosaki",
+    "bookDescription": "What the rich teach their kids about money that the poor and middle class do not.",
+    "genre": ["Finance"],
+    "totalPages": 336,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9781612680194-L.jpg"
+
+  },
+  {
+    "id": 5,
+    "isbn": "9780132350884",
+    "bookName": "Clean Code",
+    "author": "Robert C. Martin",
+    "bookDescription": "A handbook of agile software craftsmanship.",
+    "genre": ["Technology"],
+    "totalPages": 431,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg"
+  },
+  {
+    "id": 6,
+    "isbn": "9780062316097",
+    "bookName": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "bookDescription": "A brief history of humankind from the Stone Age to the present.",
+    "genre": ["History"],
+    "totalPages": 464,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg"
+  },
+  {
+    "id": 7,
+    "isbn": "9780525559474",
+    "bookName": "The Midnight Library",
+    "author": "Matt Haig",
+    "bookDescription": "Between life and death there is a library, and within that library the shelves go on forever.",
+    "genre": ["Fiction"],
+    "totalPages": 304,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780525559474-L.jpg"
+  },
+  {
+    "id": 8,
+    "isbn": "9780261102217",
+    "bookName": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "bookDescription": "The adventure of Bilbo Baggins as he journeys with a company of dwarves to reclaim their mountain home.",
+    "genre": ["Fantasy"],
+    "totalPages": 310,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780261102217-L.jpg"
+  },
+  {
+    "id": 9,
+    "isbn": "9780385737951",
+    "bookName": "The Hunger Games",
+    "author": "Suzanne Collins",
+    "bookDescription": "In a dystopian future, Katniss Everdeen fights for survival in a televised death match.",
+    "genre": ["Fiction"],
+    "totalPages": 374,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780385737951-L.jpg"
+ 
+  },
+  {
+    "id": 10,
+    "isbn": "9780307588364",
+    "bookName": "The Girl with the Dragon Tattoo",
+    "author": "Stieg Larsson",
+    "bookDescription": "A journalist and a hacker investigate a decades-old disappearance in a wealthy Swedish family.",
+    "genre": ["Thriller"],
+    "totalPages": 672,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780307588364-L.jpg"
+  
+  },
+  {
+    "id": 11,
+    "isbn": "9781400032716",
+    "bookName": "The Kite Runner",
+    "author": "Khaled Hosseini",
+    "bookDescription": "A story of friendship, betrayal, and redemption set against the backdrop of Afghanistan.",
+    "genre": ["Fiction"],
+    "totalPages": 372,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9781400032716-L.jpg"
+  
+  },
+  {
+    "id": 12,
+    "isbn": "9780679720201",
+    "bookName": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "bookDescription": "A young student commits a crime and grapples with guilt, morality, and redemption in Tsarist Russia.",
+    "genre": ["Mystery"],
+    "totalPages": 545,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780679720201-L.jpg"
+  },
+  {
+    "id": 13,
+    "isbn": "9780743273565",
+    "bookName": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "bookDescription": "A tale of wealth, love, and the American Dream in the Roaring Twenties.",
+    "genre": ["Fiction"],
+    "totalPages": 180,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg"
+
+  },
+  {
+    "id": 14,
+    "isbn": "9780385472579",
+    "bookName": "The Da Vinci Code",
+    "author": "Dan Brown",
+    "bookDescription": "A murder in the Louvre and clues in paintings lead to a discovery that could shake Christianity.",
+    "genre": ["Thriller"],
+    "totalPages": 454,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780385472579-L.jpg"
+
+  },
+  {
+    "id": 15,
+    "isbn": "9780062409850",
+    "bookName": "The Alchemist",
+    "author": "Paulo Coelho",
+    "bookDescription": "A young shepherd travels from Spain to Egypt in search of treasure and discovers his personal legend.",
+    "genre": ["Fiction"],
+    "totalPages": 208,
+    "coverImagePath":"https://covers.openlibrary.org/b/isbn/9780062409850-L.jpg"
+  },
+  {
+    "id": 16,
+    "isbn": "9781501156700",
+    "bookName": "The Power of Habit",
+    "author": "Charles Duhigg",
+    "bookDescription": "Why we do what we do in life and business, and how habits can be changed.",
+    "genre": ["Self Help"],
+    "totalPages": 371,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9781501156700-L.jpg"
+  },
+  {
+    "id": 17,
+    "isbn": "9780062457714",
+    "bookName": "Homo Deus",
+    "author": "Yuval Noah Harari",
+    "bookDescription": "A brief history of tomorrow — what will happen to jobs, wars, and politics in the age of AI.",
+    "genre": ["History"],
+    "totalPages": 448,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780062457714-L.jpg"
+ 
+  },
+  {
+    "id": 18,
+    "isbn": "9780525954179",
+    "bookName": "The Subtle Art of Not Giving a F*ck",
+    "author": "Mark Manson",
+    "bookDescription": "A counterintuitive approach to living a good life by focusing on what truly matters.",
+    "genre": ["Self Help"],
+    "totalPages": 224,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780525954179-L.jpg"
+
+  },
+  {
+    "id": 19,
+    "isbn": "9781982137274",
+    "bookName": "Educated",
+    "author": "Tara Westover",
+    "bookDescription": "A memoir about a woman who grows up in a survivalist family and goes on to earn a PhD from Cambridge.",
+    "genre": ["Biography"],
+    "totalPages": 352,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9781982137274-L.jpg"
+   
+  },
+  {
+    "id": 20,
+    "isbn": "9780553380163",
+    "bookName": "A Brief History of Time",
+    "author": "Stephen Hawking",
+    "bookDescription": "An exploration of cosmology, black holes, and the nature of time for general readers.",
+    "genre": ["Technology"],
+    "totalPages": 212,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780553380163-L.jpg"
+
+  },
+  {
+    "id": 21,
+    "isbn": "9780735224292",
+    "bookName": "Little Fires Everywhere",
+    "author": "Celeste Ng",
+    "bookDescription": "Two families in a quiet Ohio suburb whose lives become entangled in unexpected ways.",
+    "genre": ["Fiction"],
+    "totalPages": 338,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780735224292-L.jpg"
+  },
+  {
+    "id": 22,
+    "isbn": "9780062561022",
+    "bookName": "Gone Girl",
+    "author": "Gillian Flynn",
+    "bookDescription": "On their fifth anniversary, Nick Dunne's wife Amy disappears — and the truth is more unsettling than anyone imagined.",
+    "genre": ["Thriller"],
+    "totalPages": 422,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780062561022-L.jpg"
+ 
+  },
+  {
+    "id": 23,
+    "isbn": "9780593230206",
+    "bookName": "Project Hail Mary",
+    "author": "Andy Weir",
+    "bookDescription": "A lone astronaut must save Earth from an extinction-level threat — alone in deep space with no memory.",
+    "genre": ["Fiction"],
+    "totalPages": 476,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780593230206-L.jpg"
+  },
+  {
+    "id": 24,
+    "isbn": "9780735219090",
+    "bookName": "The Silent Patient",
+    "author": "Alex Michaelides",
+    "bookDescription": "A famous painter shoots her husband and then never speaks another word — a criminal psychotherapist is obsessed with uncovering her motive.",
+    "genre": ["Thriller"],
+    "totalPages": 336,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780735219090-L.jpg"
+
+  },
+  {
+    "id": 25,
+    "isbn": "9780735224964",
+    "bookName": "Where the Crawdads Sing",
+    "author": "Delia Owens",
+    "bookDescription": "A murder mystery set in the marshlands of North Carolina, weaving together a coming-of-age story.",
+    "genre": ["Mystery"],
+    "totalPages": 368,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780735224964-L.jpg"
+  },
+  {
+    "id": 26,
+    "isbn": "9780385533225",
+    "bookName": "The Handmaid's Tale",
+    "author": "Margaret Atwood",
+    "bookDescription": "A dystopian novel set in a totalitarian society where women are forced into reproductive servitude.",
+    "genre": ["Fiction"],
+    "totalPages": 311,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg"
+
+  },
+  {
+    "id": 27,
+    "isbn": "9781101904220",
+    "bookName": "Shoe Dog",
+    "author": "Phil Knight",
+    "bookDescription": "A memoir by the creator of Nike — the risks, the struggles, and the triumphs of building a global brand.",
+    "genre": ["Biography"],
+    "totalPages": 400,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9781101904220-L.jpg"
+   
+  },
+  {
+    "id": 28,
+    "isbn": "9780525658184",
+    "bookName": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "bookDescription": "Timeless lessons on wealth, greed, and happiness through short stories about how people think about money.",
+    "genre": ["Finance"],
+    "totalPages": 256,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780525658184-L.jpg"
+   
+  },
+  {
+    "id": 29,
+    "isbn": "9781250301697",
+    "bookName": "Becoming",
+    "author": "Michelle Obama",
+    "bookDescription": "An intimate memoir by the former First Lady of the United States about her journey from Chicago's South Side to the White House.",
+    "genre": ["Biography"],
+    "totalPages": 448,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9781250301697-L.jpg"
+  
+  },
+  {
+    "id": 30,
+    "isbn": "9780062663573",
+    "bookName": "Ikigai",
+    "author": "Héctor García",
+    "bookDescription": "The Japanese secret to a long and happy life — finding your reason for being.",
+    "genre": ["Self Help"],
+    "totalPages": 208,
+    "coverImagePath": "https://covers.openlibrary.org/b/isbn/9780062663573-L.jpg"
+  }
+]
+

@@ -1,6 +1,6 @@
 import Foundation
 
-protocol SessionManaging {
+protocol SessionManagingProtocol {
     var currentUserId: Int? { get }
     var isLoggedIn: Bool { get }
 
@@ -8,7 +8,7 @@ protocol SessionManaging {
     func clearSession()
 }
 
-final class SessionManager: SessionManaging {
+final class SessionManager: SessionManagingProtocol {
     static let shared = SessionManager()
 
     private let userDefaults: UserDefaults

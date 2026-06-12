@@ -2,15 +2,18 @@ import Foundation
 
 enum UserRepositoryError: LocalizedError {
     case emailAlreadyExists
-    case invalidCredentials
+    case noSuchEmailExixsts
+    case invalidPassword
     case saveFailed
 
     var errorDescription: String? {
         switch self {
         case .emailAlreadyExists:
             return "An account already exists with this email."
-        case .invalidCredentials:
-            return "The email or password is incorrect."
+        case .noSuchEmailExixsts:
+            return "No user exists with this email."
+        case .invalidPassword:
+            return "The password is incorrect."
         case .saveFailed:
             return "Could not save the account. Please try again."
         }
@@ -25,6 +28,8 @@ protocol UserRepositoryProtocol {
 }
 
 final class UserRepository: UserRepositoryProtocol {
+    static let shared = UserRepository()
+    
     private let database: DatabaseManager
 
     init(database: DatabaseManager = .shared) {
@@ -32,7 +37,6 @@ final class UserRepository: UserRepositoryProtocol {
     }
 
     func signup(username: String, email: String, password: String) throws -> UserModel {
-        try AuthValidator.validateSignup(username: username, email: email, password: password)
 
         let normalizedEmail = AuthValidator.normalizedEmail(email)
 
@@ -56,31 +60,35 @@ final class UserRepository: UserRepositoryProtocol {
     }
 
     func login(email: String, password: String) throws -> UserModel {
-        try AuthValidator.validateLogin(email: email, password: password)
 
         let normalizedEmail = AuthValidator.normalizedEmail(email)
         let passwordHash = PasswordHasher.hash(password)
-        let users = database.searchWhere(
+        
+        guard userExists(email: normalizedEmail) else {
+            throw UserRepositoryError.noSuchEmailExixsts
+        }
+        
+        let users = database.fetchWhere(
             UserModel.self,
             where: [
-                "email_id": normalizedEmail,
-                "password": passwordHash
+                UserModel.UserColumn.emailId: normalizedEmail,
+                UserModel.UserColumn.password: passwordHash
             ]
         )
 
         guard let user = users.first else {
-            throw UserRepositoryError.invalidCredentials
+            throw UserRepositoryError.invalidPassword
         }
 
         return user
     }
 
     func user(withId id: Int) -> UserModel? {
-        database.searchWhere(UserModel.self, where: ["id": id]).first
+        database.fetchWhere(UserModel.self, where: [UserModel.UserColumn.userId: id]).first
     }
 
     func userExists(email: String) -> Bool {
         let normalizedEmail = AuthValidator.normalizedEmail(email)
-        return !database.searchWhere(UserModel.self, where: ["email_id": normalizedEmail]).isEmpty
+        return !database.fetchWhere(UserModel.self, where: [UserModel.UserColumn.emailId: normalizedEmail]).isEmpty
     }
 }

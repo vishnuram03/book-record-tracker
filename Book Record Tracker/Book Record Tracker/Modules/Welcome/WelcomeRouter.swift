@@ -18,14 +18,14 @@ final class WelcomeRouter: WelcomeRouterProtocol {
 
     func navigateToLogin(from view: WelcomeViewProtocol?) {
         guard let sourceView = view as? UIViewController else { return }
-        let placeholder = ViewController()
-        placeholder.title = "Login"
-        sourceView.navigationController?.pushViewController(placeholder, animated: true)
+        let loginView = LoginRouter.createModule()
+        loginView.title = "Login"
+        sourceView.navigationController?.pushViewController(loginView, animated: true)
     }
 
     func navigateToSignup(from view: WelcomeViewProtocol?) {
         guard let sourceView = view as? UIViewController else { return }
-        let placeholder = ViewController()
+        let placeholder = SignupRouter.createModule()
         placeholder.title = "Signup"
         sourceView.navigationController?.pushViewController(placeholder, animated: true)
     }

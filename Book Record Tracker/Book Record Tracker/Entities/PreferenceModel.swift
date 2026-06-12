@@ -2,62 +2,55 @@ import Foundation
 
 final class PreferenceModel: DatabaseModel {
     static let tableName = "preferences"
-    static let primaryKey = "id"
+    static let primaryKey = PreferenceColumn.preferenceId
 
     var id: Int?
     var userId: Int
-    var preferredGenres: String
-    var preferredAuthors: String
+    var preferredGenres: [String]
     var preferredSize: String
-
-    var genresArray: [String] {
-        preferredGenres
-            .split(separator: ",")
-            .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
-            .filter { !$0.isEmpty }
-    }
-
-    var authorsArray: [String] {
-        preferredAuthors
-            .split(separator: ",")
-            .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
-            .filter { !$0.isEmpty }
-    }
+    var preferredAuthor: [String]
 
     init(
         id: Int? = nil,
         userId: Int,
-        preferredGenres: String = "",
-        preferredAuthors: String = "",
-        preferredSize: String = ""
+        preferredGenres: [String] = [],
+        preferredSize: String = "",
+        preferredAuthor : [String] = []
     ) {
         self.id = id
         self.userId = userId
         self.preferredGenres = preferredGenres
-        self.preferredAuthors = preferredAuthors
         self.preferredSize = preferredSize
+        self.preferredAuthor = preferredAuthor
+    }
+
+    enum PreferenceColumn {
+        static let preferenceId = "preference_id"
+        static let userId = "user_id"
+        static let preferredGenres = "preferred_genres"
+        static let preferredSize = "preferred_size"
+        static let preferredAuthor = "preferred_author"
     }
 
     static func columnDefinitions() -> [(String, DatabaseColumnType)] {
-        [
-            ("id", .integer),
-            ("user_id", .integer),
-            ("preferred_genres", .text),
-            ("preferred_authors", .text),
-            ("preferred_size", .text)
+        return [
+            (PreferenceColumn.userId, .integer),
+            (PreferenceColumn.preferredGenres, .text),
+            (PreferenceColumn.preferredSize, .text),
+            (PreferenceColumn.preferredAuthor, .text)
         ]
     }
 
     func toDictionary() -> [String: Any] {
         var dict: [String: Any] = [
-            "user_id": userId,
-            "preferred_genres": preferredGenres,
-            "preferred_authors": preferredAuthors,
-            "preferred_size": preferredSize
+            PreferenceColumn.userId: userId,
+            PreferenceColumn.preferredGenres: preferredGenres.joined(separator: ","),
+            PreferenceColumn.preferredSize: preferredSize,
+            PreferenceColumn.preferredAuthor: preferredAuthor.joined(separator: ",")
         ]
 
         if let id {
-            dict["id"] = id
+            dict[PreferenceColumn.preferenceId] = id
         }
 
         return dict
@@ -65,18 +58,29 @@ final class PreferenceModel: DatabaseModel {
 
     static func fromDictionary(_ dict: [String: Any]) -> PreferenceModel? {
         guard
-            let id = dict["id"] as? Int,
-            let userId = dict["user_id"] as? Int
+            let id = dict[PreferenceColumn.preferenceId] as? Int,
+            let userId = dict[PreferenceColumn.userId] as? Int
         else {
             return nil
+        }
+        
+        let genreString = dict[PreferenceColumn.preferredGenres] as? String ?? ""
+        
+        let genres = genreString.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines)}.filter { !$0.isEmpty }
+        
+        let authorString = dict[PreferenceColumn.preferredAuthor] as? String ?? ""
+        
+        let authors = authorString.split(separator: ",").map{
+            String($0).trimmingCharacters(in: .whitespacesAndNewlines)}.filter{
+                !$0.isEmpty
         }
 
         return PreferenceModel(
             id: id,
             userId: userId,
-            preferredGenres: dict["preferred_genres"] as? String ?? "",
-            preferredAuthors: dict["preferred_authors"] as? String ?? "",
-            preferredSize: dict["preferred_size"] as? String ?? ""
+            preferredGenres: genres,
+            preferredSize: dict[PreferenceColumn.preferredSize] as? String ?? "",
+            preferredAuthor: authors
         )
     }
 }

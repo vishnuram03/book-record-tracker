@@ -14,11 +14,12 @@ enum ChallengeStatus: String, CaseIterable {
 
 final class ChallengeModel: DatabaseModel {
     static let tableName = "challenges"
-    static let primaryKey = "id"
+    static let primaryKey = ChallengeColumn.challengeId
 
     var id: Int?
     var userId: Int
     var title: String
+    var bookId: Int?
     var challengeDescription: String
     var targetValue: Int
     var currentValue: Int
@@ -31,11 +32,26 @@ final class ChallengeModel: DatabaseModel {
         guard targetValue > 0 else { return 0 }
         return min(Double(currentValue) / Double(targetValue) * 100, 100)
     }
+    
+    enum ChallengeColumn {
+        static let challengeId = "challenge_id"
+        static let userId = "user_id"
+        static let bookId = "book_id"
+        static let title = "title"
+        static let description = "description"
+        static let targetValue = "target_value"
+        static let currentValue = "current_value"
+        static let challengeType = "challenge_type"
+        static let status = "status"
+        static let startDate = "start_date"
+        static let endDate = "end_date"
+    }
 
     init(
         id: Int? = nil,
         userId: Int,
         title: String,
+        bookId: Int? = nil,
         challengeDescription: String = "",
         targetValue: Int,
         currentValue: Int = 0,
@@ -47,6 +63,7 @@ final class ChallengeModel: DatabaseModel {
         self.id = id
         self.userId = userId
         self.title = title
+        self.bookId = bookId
         self.challengeDescription = challengeDescription
         self.targetValue = targetValue
         self.currentValue = currentValue
@@ -58,34 +75,39 @@ final class ChallengeModel: DatabaseModel {
 
     static func columnDefinitions() -> [(String, DatabaseColumnType)] {
         [
-            ("id", .integer),
-            ("user_id", .integer),
-            ("title", .text),
-            ("description", .text),
-            ("target_value", .integer),
-            ("current_value", .integer),
-            ("challenge_type", .text),
-            ("status", .text),
-            ("start_date", .text),
-            ("end_date", .text)
+            (ChallengeColumn.challengeId, .integer),
+            (ChallengeColumn.userId, .integer),
+            (ChallengeColumn.bookId, .integer),
+            (ChallengeColumn.title, .text),
+            (ChallengeColumn.description, .text),
+            (ChallengeColumn.targetValue, .integer),
+            (ChallengeColumn.currentValue, .integer),
+            (ChallengeColumn.challengeType, .text),
+            (ChallengeColumn.status, .text),
+            (ChallengeColumn.startDate, .text),
+            (ChallengeColumn.endDate, .text)
         ]
     }
 
     func toDictionary() -> [String: Any] {
         var dict: [String: Any] = [
-            "user_id": userId,
-            "title": title,
-            "description": challengeDescription,
-            "target_value": targetValue,
-            "current_value": currentValue,
-            "challenge_type": challengeType,
-            "status": status,
-            "start_date": startDate,
-            "end_date": endDate
+            ChallengeColumn.userId: userId,
+            ChallengeColumn.title: title,
+            ChallengeColumn.description: challengeDescription,
+            ChallengeColumn.targetValue: targetValue,
+            ChallengeColumn.currentValue: currentValue,
+            ChallengeColumn.challengeType: challengeType,
+            ChallengeColumn.status: status,
+            ChallengeColumn.startDate: startDate,
+            ChallengeColumn.endDate: endDate
         ]
 
         if let id {
-            dict["id"] = id
+            dict[ChallengeColumn.challengeId] = id
+        }
+
+        if let bookId {
+            dict[ChallengeColumn.bookId] = bookId
         }
 
         return dict
@@ -93,14 +115,14 @@ final class ChallengeModel: DatabaseModel {
 
     static func fromDictionary(_ dict: [String: Any]) -> ChallengeModel? {
         guard
-            let id = dict["id"] as? Int,
-            let userId = dict["user_id"] as? Int,
-            let title = dict["title"] as? String,
-            let targetValue = dict["target_value"] as? Int,
-            let challengeType = dict["challenge_type"] as? String,
-            let status = dict["status"] as? String,
-            let startDate = dict["start_date"] as? String,
-            let endDate = dict["end_date"] as? String
+            let id = dict[ChallengeColumn.challengeId] as? Int,
+            let userId = dict[ChallengeColumn.userId] as? Int,
+            let title = dict[ChallengeColumn.title] as? String,
+            let targetValue = dict[ChallengeColumn.targetValue] as? Int,
+            let challengeType = dict[ChallengeColumn.challengeType] as? String,
+            let status = dict[ChallengeColumn.status] as? String,
+            let startDate = dict[ChallengeColumn.startDate] as? String,
+            let endDate = dict[ChallengeColumn.endDate] as? String
         else {
             return nil
         }
@@ -109,9 +131,10 @@ final class ChallengeModel: DatabaseModel {
             id: id,
             userId: userId,
             title: title,
-            challengeDescription: dict["description"] as? String ?? "",
+            bookId: dict[ChallengeColumn.bookId] as? Int,
+            challengeDescription: dict[ChallengeColumn.description] as? String ?? "",
             targetValue: targetValue,
-            currentValue: dict["current_value"] as? Int ?? 0,
+            currentValue: dict[ChallengeColumn.currentValue] as? Int ?? 0,
             challengeType: challengeType,
             status: status,
             startDate: startDate,

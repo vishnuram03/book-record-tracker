@@ -18,8 +18,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        let rootVC: UIViewController
+        
+        if SessionManager.shared.isLoggedIn {
+              // user already logged in — go straight to Home
+            print("user id \(SessionManager.shared.currentUserId!)")
+              rootVC = HomeRouter.createModule()
+          } else {
+              // not logged in — go to Welcome
+              rootVC = WelcomeRouter.createModule()
+          }
+   
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UINavigationController(rootViewController: WelcomeRouter.createModule())
+        window.rootViewController = UINavigationController(rootViewController: rootVC )
         self.window = window
         window.makeKeyAndVisible()
     }

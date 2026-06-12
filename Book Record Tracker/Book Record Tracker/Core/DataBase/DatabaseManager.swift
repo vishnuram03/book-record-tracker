@@ -18,7 +18,7 @@ class DatabaseManager {
     private init(){
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let databaseUrl = documentsUrl.appendingPathComponent("BookTrackerDatabase.sqlite3").path
-        
+        print("📂 Database path: \(databaseUrl)")
         openDatabase(databaseUrl)
         createTables()
     }
@@ -48,7 +48,6 @@ class DatabaseManager {
         createTable(for: ReadingSessionModel.self)
         createTable(for: ChallengeModel.self)
         createTable(for: PreferenceModel.self)
-        createTable(for: RecommendationCacheModel.self)
         
     }
     private func createTable<T : DatabaseModel>(for model: T.Type) -> Bool {
@@ -270,7 +269,7 @@ class DatabaseManager {
         return result
     }
     
-    func searchWhere<T: DatabaseModel>(
+    func fetchWhere<T: DatabaseModel>(
         _ modelType: T.Type,
         where conditions: [String: Any]
     ) -> [T] {
@@ -339,6 +338,50 @@ class DatabaseManager {
             }
         }
 
+        return results
+    }
+    
+    func search<T : DatabaseModel>(_ modelType :T.Type, columns: [String], query keyword: String) -> [T]{
+        let tableName = T.tableName
+        var results: [T] = []
+        
+        let whereClause = columns.map { "\($0) LIKE ?"}.joined(separator: " OR ")
+        
+        let sql = "SELECT * FROM \(tableName) where \(whereClause);"
+        
+        var statement: OpaquePointer?
+        
+        guard sqlite3_prepare_v2(db, sql, -1, &statement, nil) == SQLITE_OK else {
+            return results
+        }
+        defer{
+            sqlite3_finalize(statement)
+        }
+        let searchTerm =   "%\(keyword)%"
+        for i in 0..<columns.count{
+            bindValue(searchTerm, to: statement, at: i+1)
+        }
+        
+        while sqlite3_step(statement) == SQLITE_ROW {
+            var dict : [String: Any] = [:]
+            
+            let columnCount = sqlite3_column_count(statement)
+            for i in 0..<columnCount{
+                let name = String(
+                    cString: sqlite3_column_name(statement, i)
+                )
+                dict[name] =
+                    getColumnValue(
+                        from: statement,
+                        at: Int(i)
+                    )
+            }
+            
+            if let model = T.fromDictionary(dict){
+                results.append(model)
+            }
+        }
+        
         return results
     }
     
